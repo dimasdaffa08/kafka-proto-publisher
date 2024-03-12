@@ -1,3 +1,1 @@
 # kafka-proto-publisher
-
-test

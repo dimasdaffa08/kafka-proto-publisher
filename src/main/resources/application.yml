@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: kafka-proto-publisher
+server:
+  port: 9000
+user:
+  kafka:
+    topic: "topic.user.message"
