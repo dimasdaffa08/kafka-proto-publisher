@@ -1,6 +1,6 @@
 plugins {
 	java
-	id("org.springframework.boot") version "3.2.3"
+	id("org.springframework.boot") version "3.2.5"
 	id("io.spring.dependency-management") version "1.1.4"
 	id("com.google.protobuf") version "0.9.3"
 }
@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-data-rest:3.2.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-rest")
 	implementation("org.springframework.kafka:spring-kafka:3.1.2")
 	implementation("org.apache.kafka:kafka-streams:3.4.1")
 	implementation("com.google.protobuf:protobuf-java:3.23.2")
