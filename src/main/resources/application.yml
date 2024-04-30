@@ -6,7 +6,7 @@ server:
 kafka:
   config:
     boot-strap-server: "127.0.0.1:9092"
-    value-deserializer: "io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer"
+    value-serializer: "io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer"
     schema-registry-url: "http://127.0.0.1:8081"
     topic-user:
       group-id: "topic.user.message.groupId"
