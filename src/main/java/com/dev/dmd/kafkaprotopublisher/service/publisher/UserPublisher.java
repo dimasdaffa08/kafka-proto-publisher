@@ -1,10 +1,10 @@
 package com.dev.dmd.kafkaprotopublisher.service.publisher;
 
+import com.dev.dmd.kafkaprotopublisher.config.properties.KafkaProperties;
 import com.dev.dmd.kafkaprotopublisher.model.request.UserRequest;
 import example.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +14,7 @@ import org.springframework.stereotype.Component;
 public class UserPublisher {
 
     private final KafkaTemplate<String, User.UserMessage> kafkaTemplate;
-
-    @Value("user.kafka.topic")
-    private String topic;
+    private final KafkaProperties kafkaProperties;
 
     public void publishMessage(UserRequest userRequest)  {
         var userMapping = User.UserMessage.newBuilder()
@@ -26,7 +24,7 @@ public class UserPublisher {
                 .setLastName(userRequest.lastName())
                 .build();
 
-        kafkaTemplate.send(topic, userMapping);
-        log.info("Message published with topic : " + topic);
+        kafkaTemplate.send(kafkaProperties.topicUser().topic(), userMapping);
+        log.info("Message published with topic : " + kafkaProperties.topicUser().topic());
     }
 }
