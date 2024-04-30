@@ -3,6 +3,11 @@ spring:
     name: kafka-proto-publisher
 server:
   port: 9000
-user:
-  kafka:
-    topic: "topic.user.message"
+kafka:
+  config:
+    boot-strap-server: "127.0.0.1:9092"
+    value-serializer: "io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer"
+    schema-registry-url: "http://127.0.0.1:8081"
+    topic-user:
+      group-id: "topic.user.message.groupId"
+      topic: "topic.user.message"

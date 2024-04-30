@@ -1,6 +1,9 @@
 package com.dev.dmd.kafkaprotopublisher.config;
 
+import com.dev.dmd.kafkaprotopublisher.config.properties.KafkaProperties;
+import com.dev.dmd.kafkaprotopublisher.constant.Constants;
 import example.user.User;
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -13,24 +16,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@RequiredArgsConstructor
 public class KafkaPublisherConfig {
+
+    private final KafkaProperties kafkaProperties;
 
     @Bean
     public ProducerFactory<String, User.UserMessage> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(
-                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "127.0.0.1:9092");
-        configProps.put(
-                ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class);
-        configProps.put(
-                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                "io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer");
-        configProps.put(
-                "schema.registry.url",
-                "http://127.0.0.1:8081"
-        );
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.bootStrapServer());
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, kafkaProperties.valueSerializer());
+        configProps.put(Constants.SCHEMA_REGISTRY_URL, kafkaProperties.schemaRegistryUrl());
+
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 

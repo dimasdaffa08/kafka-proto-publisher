@@ -33,7 +33,7 @@ dependencies {
 	implementation("com.google.protobuf:protobuf-java:3.23.2")
 	implementation("com.googlecode.protobuf-java-format:protobuf-java-format:1.4")
 	implementation("jakarta.validation:jakarta.validation-api:3.0.2")
-	implementation("io.confluent:kafka-protobuf-serializer:7.3.3")
+	implementation("io.confluent:kafka-protobuf-serializer:7.6.0")
 
 	annotationProcessor("org.projectlombok:lombok")
 	annotationProcessor("io.soabase.record-builder:record-builder-processor:34")

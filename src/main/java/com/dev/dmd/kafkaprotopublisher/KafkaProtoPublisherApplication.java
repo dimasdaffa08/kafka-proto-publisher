@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
-@SpringBootApplication(exclude = KafkaAutoConfiguration.class)
+@SpringBootApplication
 @ConfigurationPropertiesScan
 public class KafkaProtoPublisherApplication {
 
